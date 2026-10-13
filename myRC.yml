@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myRC  
+spec:
+  replicas: 3 
+  selector:
+    app: myApp      
+  template:
+    metadata:
+      labels:
+        app: myApp    
+    spec:
+      containers:
+      - name: myContainer
+        image: nginx
+        ports:
+        - containerPort: 80
