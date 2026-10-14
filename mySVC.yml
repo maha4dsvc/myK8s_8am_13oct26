@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysvc
-  Labels:
+  labels:
     app: myapp  
 spec:
   type: NodePort
