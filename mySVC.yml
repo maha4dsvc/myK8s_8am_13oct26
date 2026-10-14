@@ -9,7 +9,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 30001
+      nodePort: 30001
   selector:
     app: myapp
     
