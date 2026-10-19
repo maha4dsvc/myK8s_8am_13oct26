@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mysvc
   labels:
-    app: myapp  
+    app: myjavaapp  
 spec:
   type: NodePort
   ports:
@@ -11,6 +11,6 @@ spec:
       port: 8080
       nodePort: 30001
   selector:
-    app: myapp
+    app: myjavaapp
     
 
