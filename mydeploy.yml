@@ -16,6 +16,6 @@ spec:
      spec:
       containers:
       - name: myjavaapp-container
-        image: maha4iac/myjavaapp03april26:2
+        image: 992558785875.dkr.ecr.us-east-2.amazonaws.com/myjavaapp:1
         ports:
         - containerPort: 8080
