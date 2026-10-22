@@ -20,7 +20,7 @@ spec:
       - name: ecr-secret
       containers:
       - name: myjavaapp-container
-        image: 992558785875.dkr.ecr.us-east-2.amazonaws.com/myjavaapp:1
+        image: 992558785875.dkr.ecr.us-east-2.amazonaws.com/myjavaapp:2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
