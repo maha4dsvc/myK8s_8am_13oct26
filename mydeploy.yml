@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myjavaapp-deploy
+  namespace: production
   labels:
      app: myjavaapp
+ 
 spec:
    replicas: 2
    selector:
@@ -14,8 +16,11 @@ spec:
         labels:
           app: myjavaapp
      spec:
+      imagePullSecrets:
+      - name: ecr-secret
       containers:
       - name: myjavaapp-container
         image: 992558785875.dkr.ecr.us-east-2.amazonaws.com/myjavaapp:1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
