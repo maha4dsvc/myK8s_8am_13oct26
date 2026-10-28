@@ -1,0 +1,6 @@
+apiVersion: v2
+name: myjavaapp
+description: Online booking Java app - Helm version of mydeploy.yml + mySVCdeploy.yml
+type: application
+version: 0.1.0        # version of the chart itself
+appVersion: "2"       # version of the app inside (the image tag)

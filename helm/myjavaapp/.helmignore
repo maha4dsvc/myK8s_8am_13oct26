@@ -1,0 +1,5 @@
+# Files Helm should not package
+.git/
+*.md
+*.swp
+*.bak

@@ -1,0 +1,19 @@
+# Default values for the myjavaapp chart.
+# Override them per environment:  -f values-dev.yaml  /  -f values-prod.yaml  /  --set key=value
+
+replicaCount: 2
+
+image:
+  repository: maha4iac/myonlinebooking
+  tag: "1"
+  pullPolicy: IfNotPresent
+
+# Only needed for a private registry such as ECR, e.g.  - name: ecr-secret
+imagePullSecrets: []
+
+containerPort: 8080
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30002     # 30001 is already used by the plain YAML services in this repo

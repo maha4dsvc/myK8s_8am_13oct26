@@ -1,0 +1,12 @@
+Release "{{ .Release.Name }}" is installed in namespace "{{ .Release.Namespace }}" (revision {{ .Release.Revision }}).
+
+Check the pods:
+  kubectl get pods -n {{ .Release.Namespace }} -l release={{ .Release.Name }}
+{{ if eq .Values.service.type "NodePort" }}
+Open the app:
+  http://<node-ip>:{{ .Values.service.nodePort }}
+  (find <node-ip> with: kubectl get nodes -o wide)
+{{- else if eq .Values.service.type "LoadBalancer" }}
+Get the external URL (AWS takes 1-2 minutes):
+  kubectl get svc {{ include "myjavaapp.fullname" . }} -n {{ .Release.Namespace }}
+{{- end }}
