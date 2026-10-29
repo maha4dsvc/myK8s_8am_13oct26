@@ -175,10 +175,8 @@ The prod values pull a **private** ECR image, so create the pull secret first (E
 
 ```bash
 kubectl create namespace production
-kubectl create secret docker-registry ecr-secret -n production \
-  --docker-server=992558785875.dkr.ecr.us-east-2.amazonaws.com \
-  --docker-username=AWS \
-  --docker-password=$(aws ecr get-login-password --region us-east-2)
+kubectl create secret docker-registry ecr-secret -n production  --docker-server=992558785875.dkr.ecr.us-east-2.amazonaws.com 
+  --docker-username=AWS  --docker-password=$(aws ecr get-login-password --region us-east-2)
 
 helm install booking-prod ./myjavaapp -f myjavaapp/values-prod.yaml -n production
 
@@ -189,6 +187,27 @@ helm upgrade booking-prod ./myjavaapp -f myjavaapp/values-prod.yaml -n productio
 helm uninstall booking-prod -n production
 
 ```
+
+### Inspecting a release
+```bash
+helm status booking-dev
+helm get values booking-dev
+helm get manifest booking-dev
+```
+
+### Wait until pods are Ready. With --atomic, a failed upgrade rolls back automatically.
+```bash
+helm upgrade booking-dev ./myjavaapp --atomic --timeout 5m
+```
+
+### Package and push to an OCI registry
+  - Charts can live in ECR, just like images. It fits your setup: helm package ./myjavaapp then helm push myjavaapp-0.1.0.tgz oci://992558785875.dkr.ecr.us-east-2.amazonaws.com/
+```bash
+helm package ./myjavaapp 
+helm push myjavaapp-0.1.0.tgz oci://992558785875.dkr.ecr.us-east-2.amazonaws.com/
+
+```
+
 
 ---
 
