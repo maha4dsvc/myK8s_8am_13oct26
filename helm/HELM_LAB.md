@@ -190,14 +190,14 @@ helm uninstall booking-prod -n production
 
 ### Inspecting a release
 ```bash
-helm status booking-dev
-helm get values booking-dev
-helm get manifest booking-dev
+helm status booking-prod
+helm get values booking-prod
+helm get manifest booking-prod
 ```
 
 ### Wait until pods are Ready. With --atomic, a failed upgrade rolls back automatically.
 ```bash
-helm upgrade booking-dev ./myjavaapp --atomic --timeout 5m
+helm upgrade booking-prod ./myjavaapp --atomic --timeout 5m
 ```
 
 ### Package and push to an OCI registry
