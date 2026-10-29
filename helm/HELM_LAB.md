@@ -99,6 +99,8 @@ helm template booking-prod ./myjavaapp -f myjavaapp/values-prod.yaml
 ```bash
 helm install booking-dev ./myjavaapp -f myjavaapp/values-dev.yaml -n dev --create-namespace
 or 
+helm install booking-dev ./myjavaapp -f myjavaapp/values-prod.yaml -n dev --create-namespace
+or
 helm install booking-dev ./myjavaapp -f myjavaapp/values-dev.yaml --set service.type=LoadBalancer -n dev --create-namespace
 
 
@@ -179,7 +181,13 @@ kubectl create secret docker-registry ecr-secret -n production \
   --docker-password=$(aws ecr get-login-password --region us-east-2)
 
 helm install booking-prod ./myjavaapp -f myjavaapp/values-prod.yaml -n production
+
 kubectl get svc booking-prod-myjavaapp -n production     # wait for EXTERNAL-IP
+
+helm upgrade booking-prod ./myjavaapp -f myjavaapp/values-prod.yaml -n production
+
+helm uninstall booking-prod -n production
+
 ```
 
 ---

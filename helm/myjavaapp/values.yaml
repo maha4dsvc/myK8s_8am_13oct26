@@ -5,7 +5,7 @@ replicaCount: 2
 
 image:
   repository: maha4iac/myonlinebooking
-  tag: "1"
+  tag: "2"
   pullPolicy: IfNotPresent
 
 # Only needed for a private registry such as ECR, e.g.  - name: ecr-secret

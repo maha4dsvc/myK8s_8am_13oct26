@@ -2,11 +2,11 @@
 # Needs the ecr-secret in the production namespace first (see HELM_LAB.md)
 # helm install booking-prod ./myjavaapp -f ./myjavaapp/values-prod.yaml -n production --create-namespace
 
-replicaCount: 3
+replicaCount: 4
 
 image:
   repository: 992558785875.dkr.ecr.us-east-2.amazonaws.com/myjavaapp
-  tag: "1"
+  tag: "2"
   pullPolicy: Always
 
 imagePullSecrets:

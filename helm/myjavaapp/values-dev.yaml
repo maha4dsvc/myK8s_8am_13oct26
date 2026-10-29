@@ -1,7 +1,7 @@
 # Dev: 1 pod, public Docker Hub image, NodePort
 # helm install booking-dev ./myjavaapp -f ./myjavaapp/values-dev.yaml -n dev --create-namespace
 
-replicaCount: 1
+replicaCount: 2
 
 service:
   type: NodePort
