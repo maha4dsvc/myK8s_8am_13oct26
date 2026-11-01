@@ -1,0 +1,29 @@
+# Argo CD Application: deploys helm/myjavaapp with values-dev.yaml into namespace "dev".
+# Auto-sync: every push to main is deployed; manual changes in the cluster are undone.
+# kubectl apply -f argocd/application-dev.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: booking-dev
+  namespace: argocd                 # Applications always live in the argocd namespace
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io   # deleting the app also deletes its pods/services
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/maha4dsvc/myK8s_8am_13oct26.git
+    targetRevision: main            # branch to watch
+    path: helm/myjavaapp            # folder with Chart.yaml
+    helm:
+      releaseName: booking-dev      # keeps object names booking-dev-myjavaapp
+      valueFiles:
+        - values-dev.yaml           # relative to the chart folder
+  destination:
+    server: https://kubernetes.default.svc   # the cluster Argo CD runs in
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true                   # delete objects that were removed from Git
+      selfHeal: true                # undo manual kubectl changes
+    syncOptions:
+      - CreateNamespace=true
