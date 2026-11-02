@@ -118,6 +118,7 @@ Open the app (EKS with private nodes):
 kubectl port-forward svc/booking-dev-myjavaapp 18080:8080 -n dev
 ```
 
+
 → **http://localhost:18080/mahaLogin/**
 
 ---
