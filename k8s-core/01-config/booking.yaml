@@ -1,0 +1,49 @@
+# Booking app (same image as the Helm chart) reading the ConfigMap and the Secret.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking
+  namespace: k8s-lab
+  labels:
+    app: booking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booking
+  template:
+    metadata:
+      labels:
+        app: booking
+    spec:
+      containers:
+      - name: booking
+        image: maha4iac/myonlinebooking:2
+        ports:
+        - containerPort: 8080
+        envFrom:                       # every key -> environment variable
+        - configMapRef:
+            name: booking-config
+        - secretRef:
+            name: booking-secret
+        volumeMounts:                  # every key -> file in /config
+        - name: config
+          mountPath: /config
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: booking-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: booking
+  namespace: k8s-lab
+spec:
+  type: ClusterIP                      # no NodePort / LoadBalancer: the Ingress is the way in
+  selector:
+    app: booking
+  ports:
+  - port: 8080
+    targetPort: 8080

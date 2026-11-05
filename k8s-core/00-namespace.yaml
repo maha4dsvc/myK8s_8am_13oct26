@@ -1,0 +1,6 @@
+# Everything in this lab lives in one namespace, so cleanup is one command:
+#   kubectl delete namespace k8s-lab
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8s-lab

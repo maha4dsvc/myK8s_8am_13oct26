@@ -1,0 +1,14 @@
+# Normal (non-secret) settings for the booking app.
+# Simple keys become env vars (envFrom); app.properties becomes a file under /config.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: booking-config
+  namespace: k8s-lab
+data:
+  APP_ENV: "dev"
+  LOG_LEVEL: "INFO"
+  app.properties: |
+    db.host=mysql.k8s-lab
+    db.port=3306
+    feature.newUI=true

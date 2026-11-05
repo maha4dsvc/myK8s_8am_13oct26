@@ -1,0 +1,30 @@
+# Option B – static: the admin creates the PV first, the PVC binds to it.
+# Works on any cluster (no CSI driver), but hostPath keeps data on ONE node only:
+# good for learning, never for production. Use EITHER pvc.yaml OR this file, not both.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: notes-pv
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/k8s-lab-notes
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: notes-data
+  namespace: k8s-lab
+spec:
+  storageClassName: manual            # must match the PV
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

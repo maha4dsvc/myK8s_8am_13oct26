@@ -1,0 +1,14 @@
+# Option A – dynamic: ask the cluster's default StorageClass for a 1Gi disk.
+# On EKS this needs the EBS CSI driver add-on and a default StorageClass (see storageclass-gp3.yaml).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: notes-data
+  namespace: k8s-lab
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  # storageClassName: gp3            # leave out to use the default StorageClass

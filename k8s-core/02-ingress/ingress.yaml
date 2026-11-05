@@ -1,0 +1,26 @@
+# One entry point, two apps:  /mahaLogin -> booking:8080   and   / -> web:80
+# Needs an Ingress controller. This lab uses Traefik (see K8S_CORE_LAB.md, step 3).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: booking-ingress
+  namespace: k8s-lab
+spec:
+  ingressClassName: traefik
+  rules:
+  - http:                              # no host: works with the raw load balancer address
+      paths:
+      - path: /mahaLogin
+        pathType: Prefix
+        backend:
+          service:
+            name: booking
+            port:
+              number: 8080
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web
+            port:
+              number: 80

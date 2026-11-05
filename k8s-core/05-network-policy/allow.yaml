@@ -1,0 +1,43 @@
+# Step 2 of the pattern: small allow rules, one per need.
+
+# booking:8080 may be called by pods labelled role=frontend in k8s-lab
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: booking-allow-frontend
+  namespace: k8s-lab
+spec:
+  podSelector:
+    matchLabels:
+      app: booking
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 8080
+---
+# The Ingress controller (Traefik, namespace "traefik") may reach booking and web,
+# so the public URL keeps working after the default deny.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-traefik
+  namespace: k8s-lab
+spec:
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values: ["booking", "web"]
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: traefik

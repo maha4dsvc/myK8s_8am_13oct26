@@ -1,0 +1,11 @@
+# Step 1 of the pattern: block ALL incoming traffic to every pod in k8s-lab.
+# Only works if the cluster's CNI enforces NetworkPolicy (Calico, Cilium, EKS VPC CNI with it enabled).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+  namespace: k8s-lab
+spec:
+  podSelector: {}                      # {} = every pod in the namespace
+  policyTypes:
+  - Ingress                            # no ingress rules listed = nothing is allowed in

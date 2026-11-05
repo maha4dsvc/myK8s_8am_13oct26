@@ -1,0 +1,32 @@
+# nginx serving files from the PVC. Write a file, delete the pod, the file is still there.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes
+  namespace: k8s-lab
+  labels:
+    app: notes
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate                     # RWO disk: old pod must release it before the new one starts
+  selector:
+    matchLabels:
+      app: notes
+  template:
+    metadata:
+      labels:
+        app: notes
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.27
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: notes-data
