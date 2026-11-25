@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>myK8s_8am_13oct26 Analysis Report</title>
+<style>
+  :root {
+    --bg: #f6f7fb; --card: #ffffff; --text: #111827; --muted: #6b7280; --border: #e5e7eb;
+    --primary: #2563eb; --green: #16a34a; --amber: #d97706; --red: #dc2626; --purple: #7c3aed;
+    --radius: 12px; --shadow: 0 6px 24px rgba(17,24,39,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1220; --card: #111a2e; --text: #e5e7eb; --muted: #9ca3af; --border: #1f2a44;
+      --shadow: 0 6px 24px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1220; --card: #111a2e; --text: #e5e7eb; --muted: #9ca3af; --border: #1f2a44;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; line-height: 1.5; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+  .grade { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--border);
+           border-radius: var(--radius); padding: 12px 18px; box-shadow: var(--shadow); }
+  .grade .letter { font-size: 40px; font-weight: 800; line-height: 1; color: var(--primary); }
+  .grade .label { font-size: 13px; color: var(--muted); }
+  .grade .score { font-weight: 700; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .tile { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
+  .tile .v { font-size: 24px; font-weight: 700; }
+  .tile .k { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  section { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 20px 22px; margin-bottom: 18px; box-shadow: var(--shadow); }
+  section h2 { margin: 0 0 12px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  tr:last-child td { border-bottom: none; }
+  code { background: rgba(127,127,127,.15); padding: 1px 6px; border-radius: 4px; font-size: 12.5px; }
+  .bar { height: 10px; background: rgba(127,127,127,.18); border-radius: 6px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--primary); }
+  .lang-row { display: grid; grid-template-columns: 120px 1fr 90px; gap: 10px; align-items: center; font-size: 14px; margin: 6px 0; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .ok   { background: rgba(22,163,74,.15); color: var(--green); }
+  .warn { background: rgba(217,119,6,.15); color: var(--amber); }
+  .bad  { background: rgba(220,38,38,.15); color: var(--red); }
+  .info { background: rgba(37,99,235,.15); color: var(--primary); }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin: 4px 0; }
+  .finding { border-left: 4px solid var(--border); padding: 8px 12px; margin: 8px 0; background: rgba(127,127,127,.05); border-radius: 0 8px 8px 0; }
+  .finding.high { border-color: var(--red); } .finding.medium { border-color: var(--amber); } .finding.low { border-color: var(--primary); }
+  .finding b { display: block; margin-bottom: 2px; }
+  .finding small { color: var(--muted); }
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 28px; }
+  @media (max-width: 600px) { .lang-row { grid-template-columns: 90px 1fr 70px; } header h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>myK8s_8am_13oct26</h1>
+      <p>Complete project analysis · Kubernetes manifests · Helm chart · Argo CD GitOps · Dockerfile · generated 24 Nov 2026</p>
+    </div>
+    <div class="grade">
+      <div class="letter">C</div>
+      <div>
+        <div class="score">55 / 100</div>
+        <div class="label">Overall health</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="tile"><div class="v">33</div><div class="k">Source files</div></div>
+    <div class="tile"><div class="v">1,372</div><div class="k">Lines</div></div>
+    <div class="tile"><div class="v">0%</div><div class="k">Test code share</div></div>
+    <div class="tile"><div class="v">6</div><div class="k">Dependencies</div></div>
+    <div class="tile"><div class="v">0</div><div class="k">TODO / FIXME</div></div>
+    <div class="tile"><div class="v">40</div><div class="k">Commits</div></div>
+  </div>
+
+  <section>
+    <h2>📋 Executive summary</h2>
+    <p>This is a Kubernetes learning repository that deploys a Tomcat-based Java booking app (<code>login.war</code>) in three progressively better ways: raw Pod/RC/Deployment YAML at the root, a numbered <code>k8s-core/</code> lab (ConfigMap, Secret, Ingress, storage, RBAC, NetworkPolicy), and a Helm chart deployed to dev and prod through Argo CD. The newer parts are clean and well commented, and <code>helm lint</code> passes for both dev and prod values. The biggest strength is the GitOps setup: one chart, per-environment values, auto-sync for dev and manual sync for prod. The biggest risk is that <code>.env</code> containing a MySQL password was committed on 5 Nov 2026 to a repo that Argo CD pulls from GitHub, and there is no <code>.gitignore</code> rule to stop it.</p>
+  </section>
+
+  <section>
+    <h2>🧱 Architecture & structure</h2>
+    <ul>
+<li><b>Root (early exercises):</b> <code>mypod.yml</code> &rarr; <code>myRC.yml</code>/<code>myapprc.yml</code> (ReplicationController) &rarr; <code>mydeploy.yml</code> + <code>mySVCdeploy.yml</code> (Deployment + NodePort 30001, ECR image), with command notes in <code>pod_commands</code> and <code>Rc_comands</code>.</li>
+<li><b><code>k8s-core/</code> (building blocks, namespace <code>k8s-lab</code>):</b> <code>00-namespace</code> &rarr; <code>01-config</code> (ConfigMap + Secret injected via <code>envFrom</code> and a <code>/config</code> volume) &rarr; <code>02-ingress</code> (Traefik: <code>/mahaLogin</code> &rarr; booking:8080, <code>/</code> &rarr; nginx web) &rarr; <code>03-storage</code> (dynamic gp3 PVC or static hostPath PV) &rarr; <code>04-rbac</code> (read-only ServiceAccount) &rarr; <code>05-network-policy</code> (default deny + allow rules). <code>app/Dockerfile</code> builds the image on Tomcat 9 / JRE 17 as non-root UID 1001.</li>
+<li><b><code>helm/myjavaapp/</code>:</b> Deployment + Service templates with <code>_helpers.tpl</code> naming (<code>&lt;release&gt;-myjavaapp</code>); <code>values.yaml</code> defaults, <code>values-dev.yaml</code> (NodePort 30002, Docker Hub image) and <code>values-prod.yaml</code> (3 replicas, private ECR image, LoadBalancer).</li>
+<li><b><code>argocd/</code>:</b> <code>application-dev.yaml</code> (auto-sync, prune, self-heal &rarr; namespace <code>dev</code>) and <code>application-prod.yaml</code> (manual sync &rarr; <code>production</code>), both pulling <code>main</code> from GitHub.</li>
+</ul>
+<p>Flow: git push &rarr; Argo CD renders the Helm chart with the env values file &rarr; Deployment pulls the image &rarr; Service (NodePort / LoadBalancer) exposes port 8080.</p>
+  </section>
+
+  <section>
+    <h2>📊 Scorecard</h2>
+    <table>
+      <thead><tr><th>Area</th><th>Rating</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Structure</td><td><span class="badge ok">PASS</span></td><td>Clear progression in numbered folders <code>k8s-core/00…05</code>, <code>helm/</code>, <code>argocd/</code>; only drag is 9 loose legacy files at the root (<code>mypod.yml</code>, <code>myRC.yml</code>, …).</td></tr>
+<tr><td>Code quality</td><td><span class="badge warn">WATCH</span></td><td>Comments are excellent, but <code>myappsvc.yml</code> selects <code>version: 2.6.1</code> while <code>myapprc.yml</code> pods are <code>2.6.2</code> (Service matches nothing), and 3 Services all claim NodePort 30001.</td></tr>
+<tr><td>Tests</td><td><span class="badge warn">WATCH</span></td><td>No CI or automated validation (0% test files); <code>helm lint</code> run today passes for dev and prod values with 0 failures; raw manifests not validated against a cluster.</td></tr>
+<tr><td>Dependencies</td><td><span class="badge warn">WATCH</span></td><td>Good: <code>tomcat:9.0-jre17</code>, <code>nginx:1.27</code>. Weak: <code>mypod.yml</code> and <code>myRC.yml</code> use untagged <code>nginx</code> (:latest), and 2 files use the legacy <code>ReplicationController</code>.</td></tr>
+<tr><td>Security</td><td><span class="badge bad">FAIL</span></td><td><code>.env</code> with <code>mysqlpassword=…</code> is tracked in Git (commit c22a326) and <code>.gitignore</code> is empty; no <code>securityContext</code> or resource limits in the Helm Deployment.</td></tr>
+<tr><td>Configuration</td><td><span class="badge ok">PASS</span></td><td>Per-env Helm values, ConfigMap/Secret separation, dev auto-sync vs prod manual sync; minor: AWS account ID 992558785875 hard-coded in <code>values-prod.yaml</code> and <code>mydeploy.yml</code>.</td></tr>
+<tr><td>Documentation</td><td><span class="badge warn">WATCH</span></td><td>Three strong lab guides (764 lines: <code>K8S_CORE_LAB.md</code>, <code>HELM_LAB.md</code>, <code>ARGOCD_LAB.md</code>), but <code>README.md</code> is a one-line UTF-16 title with no overview.</td></tr>
+<tr><td>Maintainability</td><td><span class="badge warn">WATCH</span></td><td>40 commits by 1 contributor (13 Oct – 5 Nov 2026), but 35 are titled just “k8s” and 3 are reverts; 1 uncommitted change (<code>booking.yaml</code> image tag 2 &rarr; 1).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>🔤 Languages</h2>
+    <div class="lang-row"><span>Markdown</span><div class="bar"><span style="width:55.9%"></span></div><span>767 lines (55.9%)</span></div>
+<div class="lang-row"><span>YAML</span><div class="bar"><span style="width:43.2%"></span></div><span>593 lines (43.2%)</span></div>
+<div class="lang-row"><span>Text</span><div class="bar"><span style="width:0.9%"></span></div><span>12 lines (0.9%)</span></div>
+  </section>
+
+  <section>
+    <h2>📦 Dependencies</h2>
+    <table>
+      <thead><tr><th>Dependency</th><th>Version</th><th>Scope</th></tr></thead>
+      <tbody>
+        <tr><td>tomcat (base image, <code>k8s-core/app/Dockerfile</code>)</td><td>9.0-jre17</td><td>runtime</td></tr>
+<tr><td>maha4iac/myonlinebooking (Docker Hub)</td><td>2 (Helm) / 1 (booking.yaml, uncommitted)</td><td>app image</td></tr>
+<tr><td>992558785875.dkr.ecr.us-east-2.amazonaws.com/myjavaapp</td><td>1 (Helm prod) / 2 (mydeploy.yml)</td><td>app image (prod) <span class="badge warn">tags disagree</span></td></tr>
+<tr><td>nginx (<code>k8s-core</code>)</td><td>1.27</td><td>demo web</td></tr>
+<tr><td>nginx (<code>mypod.yml</code>, <code>myRC.yml</code>)</td><td>untagged = latest</td><td>demo web <span class="badge warn">pin a tag</span></td></tr>
+<tr><td>Cluster add-ons: Traefik ingress, Argo CD, EBS CSI driver</td><td>not pinned in repo</td><td>platform <span class="badge warn">install steps only in docs</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>⚠️ Findings & risks</h2>
+    <div class="finding high"><b>MySQL password committed in <code>.env</code></b> The file is tracked by Git (added in the latest commit c22a326, 5 Nov 2026) and the repo is pulled by Argo CD from GitHub, so if the repo is public the password is public. <code>.gitignore</code> is empty, so nothing prevents it happening again. Rotate the password, untrack the file and add <code>.env</code> to <code>.gitignore</code>. <small>.env:1, .gitignore</small></div>
+<div class="finding medium"><b>Demo DB password in a committed Secret</b> Clearly labelled as demo, but <code>stringData.DB_PASSWORD</code> is literal and base64 is not encryption. Fine for a lab; never copy this pattern into the Helm prod values. <small>k8s-core/01-config/secret.yaml:12</small></div>
+<div class="finding medium"><b>Service selector never matches its pods</b> <code>myappsvc.yml</code> selects <code>version: 2.6.1</code> but <code>myapprc.yml</code> labels pods <code>version: 2.6.2</code>, so the Service has no endpoints and requests fail. <small>myappsvc.yml:16, myapprc.yml:14</small></div>
+<div class="finding medium"><b>NodePort 30001 claimed by three Services</b> <code>mySVC.yml</code>, <code>myappsvc.yml</code> and <code>mySVCdeploy.yml</code> all request 30001; the second one applied is rejected with “provided port is already allocated”. <small>mySVC.yml:12, myappsvc.yml:12, mySVCdeploy.yml:13</small></div>
+<div class="finding medium"><b>No resources, probes or securityContext in the Helm chart</b> The prod Deployment (3 replicas behind a LoadBalancer) has no CPU/memory requests or limits, no readiness/liveness probe on 8080 and no <code>runAsNonRoot</code>. Rollouts can send traffic to a Tomcat that is still starting, and one pod can starve a node. <small>helm/myjavaapp/templates/deployment.yaml:21-26</small></div>
+<div class="finding low"><b>Prod and dev image tags drift</b> Helm prod pins ECR tag <code>"1"</code> while <code>mydeploy.yml</code> uses <code>:2</code>; the uncommitted change rolls <code>booking.yaml</code> from <code>:2</code> back to <code>:1</code>. Easy to deploy an older build by mistake. <small>helm/myjavaapp/values-prod.yaml:9, k8s-core/01-config/booking.yaml:21</small></div>
+<div class="finding low"><b>Comment contradicts value</b> <code>values-dev.yaml</code> says “Dev: 1 pod” but sets <code>replicaCount: 2</code> (same as the default). <small>helm/myjavaapp/values-dev.yaml:1-4</small></div>
+<div class="finding low"><b>AWS account ID hard-coded</b> The ECR registry with account 992558785875 appears in two files. Not a secret, but it ties the repo to one account; keep it in the prod values only. <small>helm/myjavaapp/values-prod.yaml:8, mydeploy.yml:23</small></div>
+<div class="finding low"><b>Legacy ReplicationController and untagged images</b> Two RC manifests and two untagged <code>nginx</code> images remain at the root. Useful history, but should be marked legacy or moved. <small>myRC.yml, myapprc.yml, mypod.yml</small></div>
+  </section>
+
+  <section>
+    <h2>🧪 Tests & quality</h2>
+    <p><b>Run today:</b> <code>helm lint helm/myjavaapp -f values-dev.yaml</code> and <code>-f values-prod.yaml</code> &rarr; <span class="badge ok">0 failed</span> (only an INFO note that <code>Chart.yaml</code> has no icon). <code>helm template</code> for prod renders 3 replicas and <code>type: LoadBalancer</code> with no stray nodePort, as intended.</p>
+<p><b>Not run:</b> <code>kubectl --dry-run</code> could not validate the raw manifests because no cluster is reachable from this machine. kubeconform and yamllint are not installed.</p>
+<p><b>Missing:</b> no CI pipeline, so a broken template or label mismatch (like <code>myappsvc.yml</code>) reaches Argo CD, and dev auto-sync deploys it immediately. A GitHub Actions job running <code>helm lint</code> + <code>kubeconform</code> on every push would catch these.</p>
+  </section>
+
+  <section>
+    <h2>🗂️ Largest files</h2>
+    <table>
+      <thead><tr><th>File</th><th>Lines</th></tr></thead>
+      <tbody>
+        <tr><td><code>k8s-core/K8S_CORE_LAB.md</code></td><td>295</td></tr>
+<tr><td><code>argocd/ARGOCD_LAB.md</code></td><td>239</td></tr>
+<tr><td><code>helm/HELM_LAB.md</code></td><td>230</td></tr>
+<tr><td><code>k8s-core/01-config/booking.yaml</code></td><td>49</td></tr>
+<tr><td><code>k8s-core/05-network-policy/allow.yaml</code></td><td>43</td></tr>
+<tr><td><code>k8s-core/02-ingress/web.yaml</code></td><td>35</td></tr>
+<tr><td><code>k8s-core/03-storage/notes.yaml</code></td><td>32</td></tr>
+<tr><td><code>k8s-core/04-rbac/rbac.yaml</code></td><td>32</td></tr>
+<tr><td><code>k8s-core/03-storage/pv-pvc-static.yaml</code></td><td>30</td></tr>
+<tr><td><code>argocd/application-dev.yaml</code></td><td>29</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>🌿 Git activity</h2>
+    <p>Branch <code>main</code> · 40 commits · 1 contributor (maha) · 13 Oct 2026 &rarr; 5 Nov 2026 · <b>1 uncommitted file</b> (<code>k8s-core/01-config/booking.yaml</code>: image <code>:2</code> &rarr; <code>:1</code>).</p>
+<p>35 of 40 commit messages are just “k8s”, and there are 3 reverts: the history works, but it does not say what changed or why.</p>
+<ul><li>c22a326 k8s</li><li>5541035 k8s</li><li>ad80355 Revert "k8s"</li><li>7d3a7b6 k8s</li><li>438665f Revert "k8s"</li></ul>
+  </section>
+
+  <section>
+    <h2>✅ Recommendations</h2>
+    <ol>
+<li><b>Remove the committed password today:</b> change the MySQL password, run <code>git rm --cached .env</code>, add <code>.env</code> to <code>.gitignore</code>, and if the GitHub repo is public, purge it from history (<code>git filter-repo</code>).</li>
+<li><b>Harden the Helm Deployment:</b> add <code>resources</code> requests/limits, a <code>readinessProbe</code>/<code>livenessProbe</code> on <code>/login/</code> port 8080, and <code>securityContext.runAsNonRoot: true</code> (the Dockerfile already runs as UID 1001), driven from <code>values.yaml</code>.</li>
+<li><b>Fix the root manifests:</b> align the <code>myappsvc.yml</code> selector to <code>2.6.2</code>, give each NodePort Service a unique port, and pin <code>nginx:1.27</code>.</li>
+<li><b>Add a CI check</b> (GitHub Actions) that runs <code>helm lint</code>, <code>helm template | kubeconform</code> and <code>kubeconform k8s-core/</code> on every push; dev auto-sync means bad YAML otherwise deploys immediately.</li>
+<li><b>Write a real README</b> (saved as UTF-8): what the app is, folder map (root &rarr; k8s-core &rarr; helm &rarr; argocd), prerequisites (EKS, Traefik, Argo CD, ecr-secret) and links to the three lab guides.</li>
+<li><b>Settle the image tags:</b> commit or discard the <code>booking.yaml</code> change, and make <code>values-prod.yaml</code> and <code>mydeploy.yml</code> agree (or retire <code>mydeploy.yml</code> now that Helm owns production).</li>
+<li><b>Move legacy exercises</b> (<code>mypod.yml</code>, <code>myRC.yml</code>, <code>myapprc.yml</code>, <code>myappsvc.yml</code>, <code>mySVC*.yml</code>, command notes) into a <code>00-basics/</code> folder so the root shows the current layout.</li>
+<li><b>Use descriptive commit messages</b> (e.g. “helm: prod uses ECR tag 2”); with Argo CD, Git history is your deployment log.</li>
+</ol>
+  </section>
+
+  <footer>Generated by the analyze-project skill · 24 Nov 2026 · metrics are computed from the files on disk at generation time</footer>
+</div>
+</body>
+</html>

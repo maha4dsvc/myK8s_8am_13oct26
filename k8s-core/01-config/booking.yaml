@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: booking
-        image: maha4iac/myonlinebooking:2
+        image: maha4iac/myonlinebooking:1
         ports:
         - containerPort: 8080
         envFrom:                       # every key -> environment variable
